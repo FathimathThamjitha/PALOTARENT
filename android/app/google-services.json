@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "286664447245",
+    "project_id": "palotarent",
+    "storage_bucket": "palotarent.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286664447245:android:ee2ca720025b030eabcc44",
+        "android_client_info": {
+          "package_name": "com.example.palota_rent_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo_qns4nGgKgbaURz0ZvqdsXzQyfqzNgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
