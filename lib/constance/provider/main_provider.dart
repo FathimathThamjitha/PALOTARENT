@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart'as firebase_storage;
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:palota_rent_app/constance/call_functions.dart';
 import '../../user/urdetails.dart';
 import '../../user/welcome.dart';
@@ -712,7 +713,161 @@ void declineRequest(id){
 
     });
   }
+///Pick Date........................................................
+  // TimeOfDay _time = TimeOfDay.now();
+  DateTime _date = DateTime.now();
+  // DateTime scheduledTime = DateTime.now();
+  DateTime scheduledDate = DateTime.now();
+  String scheduledDayNode = "";
+  var outputDateFormat = DateFormat('dd/MM/yyyy');
+  // var outputTimeFormat = DateFormat('hh:mm a');
+  TextEditingController dateController = TextEditingController();
+  // TextEditingController timeController = TextEditingController();
 
+  // Future<void> selectDateAndTime(BuildContext context) async {
+  //
+  //   await _selectDate(context);
+  //   await _selectTime(context);
+  // }
+
+  Future<void> selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _date,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2100),
+    );
+
+    if (picked != null) {
+      _date = picked;
+      scheduledDate = DateTime(_date.year, _date.month, _date.day);
+      dateController.text = outputDateFormat.format(scheduledDate);
+
+    }
+    }
+
+///Drop Date...........................................
+
+  // TimeOfDay _time = TimeOfDay.now();
+  DateTime _dropdate = DateTime.now();
+  // DateTime scheduledTime = DateTime.now();
+  DateTime scheduleddropDate = DateTime.now();
+  String scheduleddropDayNode = "";
+  var outputdropDateFormat = DateFormat('dd/MM/yyyy');
+  // var outputTimeFormat = DateFormat('hh:mm a');
+  TextEditingController dropdateController = TextEditingController();
+  // TextEditingController timeController = TextEditingController();
+
+  // Future<void> selectDateAndTime(BuildContext context) async {
+  //
+  //   await _selectDate(context);
+  //   await _selectTime(context);
+  // }
+
+  Future<void> selectDropDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _dropdate,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2100),
+    );
+
+    if (picked != null) {
+      _dropdate = picked;
+      scheduleddropDate = DateTime(_dropdate.year, _dropdate.month, _dropdate.day);
+      dropdateController.text = outputdropDateFormat.format(scheduleddropDate);
+    }
+  }
+
+
+
+  ///YOUR PROOF........................................
+  File? YourProof;
+
+  void setYourProof(File imagee) {
+    YourProof = imagee;
+
+
+    notifyListeners();
+  }
+  // void ClearDetails() {
+  //   CarNameController.clear();
+  //   PriceController.clear();
+  //   SeatsController.clear();
+  //   BagsController.clear();
+  //   KlmController.clear();
+  //
+  // }
+
+
+  Future getyourProofgallery() async {
+    final imagePicker = ImagePicker();
+    final pickedImage =
+    await imagePicker.pickImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      // setImage(File(pickedImage.path));
+      cropBrandLogo(pickedImage.path);
+      // print("hjkl"+pickedImage.path);
+    } else {
+      print('No image selected.');
+    }
+  }
+
+  Future getYourProofcamera() async {
+    final imagePicker = ImagePicker();
+    final pickedImage =
+    await imagePicker.pickImage(source: ImageSource.camera);
+
+    if (pickedImage != null) {
+      // print("dfghjk"+pickedImage.path);
+      cropBrandLogo(pickedImage.path);
+      // setImage(File(pickedImage.path));
+
+    } else {
+      print('No image selected.');
+    }
+  }
+
+  Future<void> cropYourProof(String path) async {
+    final croppedFile = await ImageCropper().cropImage(
+      sourcePath: path,
+      aspectRatioPresets: Platform.isAndroid
+          ? [
+        CropAspectRatioPreset.square,
+        CropAspectRatioPreset.ratio3x2,
+        CropAspectRatioPreset.original,
+        CropAspectRatioPreset.ratio4x3,
+        CropAspectRatioPreset.ratio16x9,
+      ] :
+      [CropAspectRatioPreset.original,
+        CropAspectRatioPreset.square,
+        CropAspectRatioPreset.ratio3x2,
+        CropAspectRatioPreset.ratio4x3,
+        CropAspectRatioPreset.ratio5x3,
+        CropAspectRatioPreset.ratio5x4,
+        CropAspectRatioPreset.ratio7x5,
+        CropAspectRatioPreset.ratio16x9,
+        CropAspectRatioPreset.ratio16x9
+      ],
+      uiSettings: [
+        AndroidUiSettings(
+            toolbarTitle: 'Cropper',
+            toolbarColor: Colors.white,
+            toolbarWidgetColor: Colors.black,
+            initAspectRatio: CropAspectRatioPreset.original,
+            lockAspectRatio: false),
+        IOSUiSettings(
+          title: 'Cropper',
+        )
+      ],
+    );
+    if (croppedFile != null) {
+      YourProof = File(croppedFile.path);
+      notifyListeners();
+    }
+    notifyListeners();
+  }
 
     }
 

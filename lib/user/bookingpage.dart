@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:palota_rent_app/constance/provider/main_provider.dart';
 import 'package:palota_rent_app/user/payment_page.dart';
 import 'package:palota_rent_app/user/refactoring.dart';
+import 'package:provider/provider.dart';
 
 import 'carview.dart';
 
@@ -11,7 +13,7 @@ class Bookingpage extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-
+ MainProvider provider=Provider.of<MainProvider>(context,listen: false );
     return SafeArea(
         child: Container(
         height: height,width: width,
@@ -153,9 +155,110 @@ class Bookingpage extends StatelessWidget {
       SizedBox(height: 20,),
       Row(
         children: [
-          containertextfieldbookinfpage("Pick Date:"),
+          Row(
+              children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding:  EdgeInsets.only(left: 10),
+                      child: Text("Pick Date:",style: TextStyle(
+                          fontSize: 16,fontWeight: FontWeight.bold,
+                          color: Colors.amber.shade50),),
+                    ),
+                    SizedBox(height: 10,),
+
+                    Padding(
+                      padding:  EdgeInsets.only(left: 10),
+                      child: Container(
+                        height: 40,
+                        width: 150,
+                        decoration: BoxDecoration(color: Color(0xff474E5B),
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [BoxShadow(
+                              color: Colors.black38,
+                              blurRadius: 10,
+                            ),]
+                        ),
+                        child: TextFormField(
+                          // enabled: true,
+                            keyboardType: TextInputType.none,
+                            textAlign: TextAlign.center,
+                          onTap: (){
+                            print("jhcbjd5665vhdbv"+provider.dateController.toString());
+                          provider.selectDate(context);
+                        },
+                          controller: provider.dateController,
+                          cursorColor:Colors.amber.shade50 ,style: TextStyle(color: Colors.amber.shade50,),
+                          decoration: InputDecoration(
+                            isCollapsed: true,
+                            contentPadding: EdgeInsets.all(8),
+                            fillColor: Color(0xff474E5B),
+                            filled: true,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide.none),
+
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ]
+          ),
           SizedBox(width: 30,),
-          containertextfieldbookinfpage("Drop Date:"),
+          Row(
+              children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding:  EdgeInsets.only(left: 10),
+                      child: Text("Drop Date:" ,style: TextStyle(
+                          fontSize: 16,fontWeight: FontWeight.bold,
+                          color: Colors.amber.shade50),),
+                    ),
+                    SizedBox(height: 10,),
+
+                    Padding(
+                      padding:  EdgeInsets.only(left: 10),
+                      child: Container(
+                        height: 40,
+                        width: 150,
+                        decoration: BoxDecoration(color: Color(0xff474E5B),
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [BoxShadow(
+                              color: Colors.black38,
+                              blurRadius: 10,
+                            ),]
+                        ),
+                        child: TextField(
+                          keyboardType: TextInputType.none,
+                          // enabled:true,
+                          textAlign: TextAlign.center,
+                          onTap: (){
+                            print("jhcbjdvhdbv"+provider.dropdateController.toString());
+                          provider.selectDropDate(context);
+                        },
+                          controller: provider.dropdateController,
+
+                          cursorColor:Colors.amber.shade50 ,style: TextStyle(color: Colors.amber.shade50,),
+                          decoration: InputDecoration(
+                            fillColor: Color(0xff474E5B),
+                            filled: true,
+                            isCollapsed: true,
+                            contentPadding: EdgeInsets.all(8),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide.none),
+
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ]
+          ),
         ],
       ),
             SizedBox(height: 30,),
