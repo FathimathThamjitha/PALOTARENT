@@ -1,17 +1,19 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:palota_rent_app/constance/provider/main_provider.dart';
 import 'package:provider/provider.dart';
 
 
-Widget containerList(String names,){
+Widget containerList(String names,dynamic height,dynamic width){
+
   return Column(
     children: [
       Padding(
-        padding:  EdgeInsets.only(left: 80,top: 40),
+        padding:  EdgeInsets.only(left: 60,top: 40),
         child: Container(
-          height: 50,
-          width: 200,
+          height: height,
+          width: width,
           decoration: BoxDecoration(
             color: Color(0xff474E5B),
             borderRadius: BorderRadius.circular(10),
@@ -19,19 +21,22 @@ Widget containerList(String names,){
           ),
           child: Padding(
             padding:  EdgeInsets.only(left: 20),
-            child: Row(
+            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(names,style: TextStyle(fontWeight: FontWeight.bold,
-                    fontSize: 14,color:Colors.amber.shade50),),
-                SizedBox(width: 76,),
-                Container(
-                  height: 22,
-                  width: 22,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(4)),
-                    color: Color(0xffD9D9D9),
+                    fontSize: 19,color:Colors.amber.shade50),),
+                SizedBox(width: 20,),
+                Padding(
+                  padding:  EdgeInsets.only(right: 10),
+                  child: Container(
+                    height: 22,
+                    width: 22,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                      color: Color(0xffD9D9D9),
+                    ),
+                    child:Icon(Icons.arrow_forward_ios_rounded,size: 15,color: Colors.black,),
                   ),
-                  child:Icon(Icons.arrow_forward_ios_rounded,size: 15,color: Colors.black,),
                 ),
               ],
             ),

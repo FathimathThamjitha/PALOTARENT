@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import '../user/refactoring.dart';
 import '../user/topbrands.dart';
 import '../user/welcome.dart';
+import 'add_booking_places.dart';
 import 'add_brands.dart';
 import 'admin_refactoring.dart';
 // import 'car_detail_fullview.dart';
@@ -38,7 +39,7 @@ class FrontPage extends StatelessWidget {
             val.getProfilelist();
             callNext(context, requestts());
           },
-              child: containerList("Requests"));
+              child: containerList("Requests",height/13,width/1.5));
         }
       ),
         Consumer<MainProvider>(
@@ -51,7 +52,7 @@ class FrontPage extends StatelessWidget {
 
 
             },
-                child: containerList("Top Brands"),);
+                child: containerList("Top Brands",height/13,width/1.5),);
           }
         ),
       Consumer<MainProvider>(
@@ -63,14 +64,20 @@ class FrontPage extends StatelessWidget {
 
             callNext(context, UsersList());
           },
-            child: containerList("Users List"),);
+            child: containerList("Users List",height/13,width/1.5),);
         }
       ),
 
         GestureDetector(onTap: (){
           callNext(context, view_Bookings());
         },
-            child: containerList("Booking"),),
+            child: containerList("View Bookings",height/13,width/1.5),),
+
+         InkWell(
+             onTap: (){
+               callNext(context, Add_Booking_Places());
+             },
+             child: containerList("Booking Places",height/13,width/1.5)),
       SizedBox(height: 50,),
       Padding(
         padding: const EdgeInsets.only(left: 60),

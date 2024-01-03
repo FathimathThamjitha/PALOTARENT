@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:palota_rent_app/constance/provider/main_provider.dart';
 import 'package:palota_rent_app/user/payment_page.dart';
 import 'package:palota_rent_app/user/refactoring.dart';
@@ -55,17 +56,56 @@ class Bookingpage extends StatelessWidget {
               child: Text("Your proof:",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.amber.shade50),),
             )),
       SizedBox(height: 10,),
-      Container(
-        height: 120,
-        width: 340,
-        decoration: BoxDecoration(color: Color(0xff474E5B),
-        borderRadius: BorderRadius.circular(10),
-            boxShadow: [BoxShadow(
-              color: Colors.black38,
-              blurRadius: 10,
-            ),]
+      InkWell(onTap: (){
+        showBottomSheet(context);
+      },
+        child: Consumer<MainProvider>(
+          builder: (context,value,child) {
+            return value.YourProofimg != null
+              ?Container(
+              height: 120,
+              width: 340,
+              decoration: BoxDecoration(color: Color(0xff474E5B),
+              borderRadius: BorderRadius.circular(10),
+                  boxShadow: [BoxShadow(
+                    color: Colors.black38,
+                    blurRadius: 10,
+                  ),]
+              ),
+              child:Image.file(value.YourProofimg !,fit:BoxFit.fill,),
+            ):
+            // value.imageproof!=""?
+            //     ?Container(
+            //   height: 120,
+            //   width: 340,
+            //   decoration: BoxDecoration(color: Color(0xff474E5B),
+            //       borderRadius: BorderRadius.circular(10),
+            //       boxShadow: [BoxShadow(
+            //         color: Colors.black38,
+            //         blurRadius: 10,
+            //       ),]
+            //   ),
+            //   child:Image.network(value.imageproof !,fit:BoxFit.fill,),
+            // ):
+            Container(
+              height: 120,
+              width: 340,
+              decoration: BoxDecoration(color: Color(0xff474E5B),
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [BoxShadow(
+                    color: Colors.black38,
+                    blurRadius: 10,
+                  ),]
+              ),
+              child: Icon(Icons.camera_alt_outlined,color: Colors.grey.shade600,size: 40,),
+            );
+
+
+
+
+          }
         ),
-        child:  Icon(Icons.camera_alt_outlined,color: Colors.grey.shade600,size: 40,)),
+      ),
 
       SizedBox(height: 20,),
       Row(
@@ -91,7 +131,7 @@ class Bookingpage extends StatelessWidget {
                         blurRadius: 10,
                       ),]
                   ),
-                  child: TextField(
+                  child: TextField(keyboardType: TextInputType.number,
                     maxLines:10,
                     cursorColor:Colors.amber.shade50 ,style: TextStyle(color: Colors.amber.shade50,),
                     decoration: InputDecoration(
@@ -127,7 +167,8 @@ class Bookingpage extends StatelessWidget {
                         blurRadius: 10,
                       ),]
                   ),
-                  child: TextField(maxLines: 2,
+                  child: TextField(keyboardType: TextInputType.number,
+                    maxLines: 2,
                     cursorColor:Colors.amber.shade50 ,style: TextStyle(color: Colors.amber.shade50,),
                     decoration: InputDecoration(
                       fillColor: Color(0xff474E5B),
@@ -147,9 +188,89 @@ class Bookingpage extends StatelessWidget {
       SizedBox(height: 20,),
       Row(
         children: [
-          containertextfieldbookinfpage("Pick Location:"),
+          Row(
+              children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding:  EdgeInsets.only(left: 10),
+                      child: Text("Pick Location:",style: TextStyle(
+                          fontSize: 16,fontWeight: FontWeight.bold,
+                          color: Colors.amber.shade50),),
+                    ),
+                    SizedBox(height: 10,),
+
+                    Padding(
+                      padding:  EdgeInsets.only(left: 10),
+                      child: Container(
+                        height: 40,
+                        width: 150,
+                        decoration: BoxDecoration(color: Color(0xff474E5B),
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [BoxShadow(
+                              color: Colors.black38,
+                              blurRadius: 10,
+                            ),]
+                        ),
+                        child: TextField(maxLines: 20,
+                          cursorColor:Colors.amber.shade50 ,style: TextStyle(color: Colors.amber.shade50,),
+                          decoration: InputDecoration(
+                            fillColor: Color(0xff474E5B),
+                            filled: true,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide.none),
+
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ]
+          ),
           SizedBox(width: 30,),
-          containertextfieldbookinfpage("Drop Location:"),
+          Row(
+              children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding:  EdgeInsets.only(left: 10),
+                      child: Text("Drop Location:",style: TextStyle(
+                          fontSize: 16,fontWeight: FontWeight.bold,
+                          color: Colors.amber.shade50),),
+                    ),
+                    SizedBox(height: 10,),
+
+                    Padding(
+                      padding:  EdgeInsets.only(left: 10),
+                      child: Container(
+                        height: 40,
+                        width: 150,
+                        decoration: BoxDecoration(color: Color(0xff474E5B),
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [BoxShadow(
+                              color: Colors.black38,
+                              blurRadius: 10,
+                            ),]
+                        ),
+                        child: TextField(maxLines: 20,
+                          cursorColor:Colors.amber.shade50 ,style: TextStyle(color: Colors.amber.shade50,),
+                          decoration: InputDecoration(
+                            fillColor: Color(0xff474E5B),
+                            filled: true,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide.none),
+
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ]
+          )
         ],
       ),
       SizedBox(height: 20,),
@@ -294,4 +415,40 @@ class Bookingpage extends StatelessWidget {
     )
     );
   }
+}
+void showBottomSheet(BuildContext context) {
+  MainProvider provider = Provider.of<MainProvider>(context, listen: false);
+  showModalBottomSheet(
+      elevation: 10,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10.0),
+            topRight: Radius.circular(10.0),
+          )),
+      context: context,
+      builder: (BuildContext bc) {
+        return Wrap(
+          children: <Widget>[
+            ListTile(
+                leading: Icon(
+                  Icons.camera_enhance_sharp,
+                  color: Colors.grey.shade600,
+                ),
+                title: const Text(
+                  'Camera',
+                ),
+                onTap: () =>
+                {provider.getYourProofcamera(), Navigator.pop(context)}),
+            ListTile(
+                leading: Icon(Icons.photo, color: Colors.grey.shade600,),
+                title: const Text(
+                  'Gallery',
+                ),
+                onTap: () =>
+                {provider.getyourProofgallery(), Navigator.pop(context)}),
+          ],
+        );
+      });
+  //ImageSource
 }

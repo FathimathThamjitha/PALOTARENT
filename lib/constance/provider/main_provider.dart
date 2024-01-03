@@ -782,10 +782,11 @@ void declineRequest(id){
 
 
   ///YOUR PROOF........................................
-  File? YourProof;
+  File? YourProofimg;
+  String imageproof="";
 
   void setYourProof(File imagee) {
-    YourProof = imagee;
+    YourProofimg = imagee;
 
 
     notifyListeners();
@@ -807,7 +808,7 @@ void declineRequest(id){
 
     if (pickedImage != null) {
       // setImage(File(pickedImage.path));
-      cropBrandLogo(pickedImage.path);
+      cropYourProof(pickedImage.path);
       // print("hjkl"+pickedImage.path);
     } else {
       print('No image selected.');
@@ -821,7 +822,7 @@ void declineRequest(id){
 
     if (pickedImage != null) {
       // print("dfghjk"+pickedImage.path);
-      cropBrandLogo(pickedImage.path);
+      cropYourProof(pickedImage.path);
       // setImage(File(pickedImage.path));
 
     } else {
@@ -863,7 +864,7 @@ void declineRequest(id){
       ],
     );
     if (croppedFile != null) {
-      YourProof = File(croppedFile.path);
+      YourProofimg = File(croppedFile.path);
       notifyListeners();
     }
     notifyListeners();
