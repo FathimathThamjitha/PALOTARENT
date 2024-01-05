@@ -118,9 +118,10 @@ class AddBrands extends StatelessWidget {
                               if(from == "NEW"){
                                 value.addBrandname("NEW",'');
                               }else{
+                                value.addBrandname("EDIT",bid);
 
                               }
-                              value.addBrandname("EDIT",bid);
+
                               callNext(context, Topbrandscars());
 
                               },

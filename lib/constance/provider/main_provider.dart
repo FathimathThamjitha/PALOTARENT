@@ -1,6 +1,7 @@
 import 'dart:collection';
 import 'dart:io';
 
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,7 +14,7 @@ import 'package:palota_rent_app/constance/call_functions.dart';
 import '../../user/urdetails.dart';
 import '../../user/welcome.dart';
 import 'my_models.dart';
-import 'my_models.dart';
+
 
 class MainProvider extends ChangeNotifier {
   String checkvalue = "";
@@ -70,10 +71,11 @@ class MainProvider extends ChangeNotifier {
       // editMap['IMAGE_URL'] = imageUrl;
     }
     print("code heree222");
-    // db.collection("BRANDS").doc(bid).set(map);
-    notifyListeners();
+
+
     if (from == "NEW") {
       db.collection("BRANDS").doc(id).set(map);
+
     } else {
       db.collection("BRANDS").doc(bid).update(map);
     }
@@ -112,12 +114,11 @@ class MainProvider extends ChangeNotifier {
               value.id,
               value.get("BRAND_NAME").toString(),
               value.get("BRAND_LOGO").toString()
-          ),
-
-          );
+          ));
 
           notifyListeners();
         }
+        notifyListeners();
       }
     });
   }
@@ -145,8 +146,63 @@ class MainProvider extends ChangeNotifier {
     getBrandName();
     notifyListeners();
   }
+  List<BookingPlaces> BookingPlacelist=[];
+  TextEditingController PlaceController= TextEditingController();
+   void deleteBookingPlaces(String plcid, context){
+  db.collection("BOOKING_PLACES").doc(plcid).delete();
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Deleted"),
+  backgroundColor: Color(0xff474E5B).withOpacity(0.40),));
+  getBookingPlaces();
+  notifyListeners();
+}
+  void addBookingPlaces(String from,String Plcid){
+     print("hffhgfdhvhfd");
+    String Id=DateTime.now().millisecondsSinceEpoch.toString();
+    HashMap<String, Object> map = HashMap();
+    map["PLACE"]=PlaceController.text.toString();
+    map["PLACE_ID"]=Id;
+    map["TIME"]=DateTime.now();
 
-  void addCarDetails(String Brandname,String Brandid) async {
+
+    if (from == "NEW") {
+      db.collection("BOOKING_PLACES").doc(Id).set(map);
+    } else {
+      db.collection("BOOKING_PLACES").doc(Plcid).update(map);
+    }
+
+    getBookingPlaces();
+
+    notifyListeners();
+
+  }
+  void editBookingPlace(String editplc){
+ db.collection("BOOKING_PLACES").doc(editplc).get().then((value){
+   if (value.exists){
+     Map<dynamic, dynamic> map = value.data() as Map;
+     PlaceController.text = map ["PLACE"].toString();
+   }
+ });
+ notifyListeners();
+  }
+  void clearBookPlcfunction(){
+     PlaceController.clear();
+  }
+  void getBookingPlaces(){
+    db.collection("BOOKING_PLACES").get().then((value1){
+      if (value1.docs.isNotEmpty){
+        BookingPlacelist.clear();
+        for (var value in value1.docs){
+          BookingPlacelist.add(BookingPlaces(
+            value.id,
+            value.get("PLACE").toString()
+          ));
+          notifyListeners();
+        }
+      }
+    }
+    );
+  }
+  void addBrandDetails(String Brandname,String Brandid) async {
     DateTime dat = DateTime.now();
     String cid = dat.millisecondsSinceEpoch.toString();
     HashMap<String, Object> map = HashMap();
@@ -666,24 +722,24 @@ void declineRequest(id){
 
 
 
-  void LogoutNo(String editid) {
-    db.collection("BRANDS").doc(editid).get().then((value) {
-      if (value.exists) {
-        Map<dynamic, dynamic> map = value.data() as Map;
-        nameController.text = map["BRAND_NAME"].toString();
-        notifyListeners();
-      }
-    });
-  }
+  // void LogoutNo(String editid) {
+  //   db.collection("BRANDS").doc(editid).get().then((value) {
+  //     if (value.exists) {
+  //       Map<dynamic, dynamic> map = value.data() as Map;
+  //       nameController.text = map["BRAND_NAME"].toString();
+  //       notifyListeners();
+  //     }
+  //   });
+  // }
 
-  void LogoutYes(String bid, context) {
-    db.collection("BRANDS").doc(bid).delete();
-    ScaffoldMessenger.of(context).showSnackBar
-      (SnackBar(content: Text("Delete"),
-      backgroundColor: Color(0xff474E5B).withOpacity(0.40),),);
-    getBrandName();
-    notifyListeners();
-  }
+  // void LogoutYes(String bid, context) {
+  //   db.collection("BRANDS").doc(bid).delete();
+  //   ScaffoldMessenger.of(context).showSnackBar
+  //     (SnackBar(content: Text("Delete"),
+  //     backgroundColor: Color(0xff474E5B).withOpacity(0.40),),);
+  //   getBrandName();
+  //   notifyListeners();
+  // }
 
 
 

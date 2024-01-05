@@ -23,4 +23,8 @@ class NamePhn{
   String profileImage;
   NamePhn(this.id,this.Name,this.Phone,this.profileImage);
 }
- 
+class BookingPlaces{
+  String id;
+  String Place;
+  BookingPlaces(this.id,this.Place);
+}
