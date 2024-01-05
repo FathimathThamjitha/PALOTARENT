@@ -13,7 +13,7 @@ import 'package:provider/provider.dart';
 import '../user/refactoring.dart';
 import '../user/topbrands.dart';
 import '../user/welcome.dart';
-import 'add_booking_places.dart';
+import 'view_booking_places.dart';
 import 'add_brands.dart';
 import 'admin_refactoring.dart';
 // import 'car_detail_fullview.dart';
@@ -73,11 +73,16 @@ class FrontPage extends StatelessWidget {
         },
             child: containerList("View Bookings",height/13,width/1.5),),
 
-         InkWell(
-             onTap: (){
-               callNext(context, Add_Booking_Places());
-             },
-             child: containerList("Booking Places",height/13,width/1.5)),
+         Consumer<MainProvider>(
+           builder: (context,value,child) {
+             return GestureDetector(
+                 onTap: (){
+                   value.getBookingPlaces();
+                   callNext(context, View_Booking_Places());
+                 },
+                 child: containerList("Booking Places",height/13,width/1.5));
+           }
+         ),
       SizedBox(height: 50,),
       Padding(
         padding: const EdgeInsets.only(left: 60),

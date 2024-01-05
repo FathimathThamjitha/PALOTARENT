@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../constance/provider/main_provider.dart';
 import '../user/refactoring.dart';
 import 'admin_refactoring.dart';
-import 'audi_car_adding.dart';
+import 'View_Cars_Addig.dart';
 
 class CarDetails extends StatefulWidget {
   String from;
@@ -41,7 +41,7 @@ class _CarDetailsState extends State<CarDetails> {
         padding:  EdgeInsets.only(left: 10,top: 10),
         child: GestureDetector(onTap: (){
 
-callNext(context, AudiCarAddig(from: widget.from,Brandid: widget.Brandid,));
+        callNext(context, View_Cars_Addig(from: widget.from,Brandid: widget.Brandid,));
 },
         child: Icon(Icons.arrow_back_ios_rounded,color: Colors.amber.shade50,)),
         ),
@@ -154,8 +154,8 @@ callNext(context, AudiCarAddig(from: widget.from,Brandid: widget.Brandid,));
           Consumer<MainProvider>(
             builder: (context,value,child) {
               return InkWell(onTap: (){
-                value.addCarDetails(widget.from,widget.Brandid);
-                callNext(context, AudiCarAddig(from: widget.from,Brandid: widget.Brandid));
+                value.addBrandDetails(widget.from,widget.Brandid);
+                callNext(context, View_Cars_Addig(from: widget.from,Brandid: widget.Brandid));
                 // Navigator.push(context, MaterialPageRoute(builder: (context)=>AudiCarAddig()));
                 // callNext(context, AudiCarAddig());
               },

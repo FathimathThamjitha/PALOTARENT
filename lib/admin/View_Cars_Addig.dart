@@ -10,10 +10,10 @@ import 'admin_refactoring.dart';
 import 'car_details.dart';
 import 'car_full_view.dart';
 
-class AudiCarAddig extends StatelessWidget {
+class View_Cars_Addig extends StatelessWidget {
   String from;
   String Brandid;
-   AudiCarAddig({super.key,required this.from,required this.Brandid});
+  View_Cars_Addig({super.key,required this.from,required this.Brandid});
   List<String>carimage=[
     "assets/ford.png",
 
