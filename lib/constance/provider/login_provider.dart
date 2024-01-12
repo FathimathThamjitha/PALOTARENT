@@ -114,4 +114,28 @@ class LoginProvider extends ChangeNotifier{
     });
   }
 
+  TextEditingController CustomerNameController = TextEditingController();
+  TextEditingController CustomerPhoneController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  TextEditingController LocationController = TextEditingController();
+  TextEditingController DetailsController = TextEditingController();
+
+  void Addbooking(String usrId) {
+    String id = DateTime.now().microsecondsSinceEpoch.toString();
+    HashMap<String, Object> bookingMap = HashMap();
+    bookingMap["NAME"] = CustomerNameController.text.toString();
+    bookingMap["PHONE"] = CustomerPhoneController.text.toString();
+    bookingMap["DATE"] = dateController.text.toString();
+    bookingMap["LOCATION"] = LocationController.text.toString();
+    bookingMap["BOOKING_ID"] = id;
+    // appointmentMap["USER_ID"] = usrId;
+    bookingMap["ADDED_TIME"] = DateTime.now();
+    // appointmentMap["STATUS"] = "REQUESTED";
+
+    db.collection("APPOINTMENTS").doc(id).set(bookingMap);
+    // getbooking();
+    notifyListeners();
+  }
+
+
 }

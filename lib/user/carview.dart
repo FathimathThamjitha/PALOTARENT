@@ -100,11 +100,17 @@ Navigator.pop(context);
 
 
     SizedBox(height: 300,
-        child: InkWell(
-            onTap: (){
-              callNext(context, Bookingpage());
-            },
-            child: button("BUY NOW", height/20, width/3, ))),
+        child: Consumer<MainProvider>(
+          builder: (context,value,child) {
+            return InkWell(
+                onTap: (){
+                  value.getBookingPlaces();
+                  callNext(context, Bookingpage());
+
+                },
+                child: button("BUY NOW", height/20, width/3, ));
+          }
+        )),
        ],
     )
     )

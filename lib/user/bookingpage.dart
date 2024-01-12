@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:palota_rent_app/constance/provider/main_provider.dart';
+import 'package:palota_rent_app/constance/provider/my_models.dart';
 import 'package:palota_rent_app/user/payment_page.dart';
 import 'package:palota_rent_app/user/refactoring.dart';
 import 'package:provider/provider.dart';
 
+import '../constance/call_functions.dart';
 import 'carview.dart';
 
 class Bookingpage extends StatelessWidget {
-  const Bookingpage({super.key});
+  Bookingpage({super.key});
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -187,228 +190,490 @@ class Bookingpage extends StatelessWidget {
       ),
       SizedBox(height: 20,),
       Row(
-        children: [
-          Row(
+          children: [
+            Column(crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:  EdgeInsets.only(left: 10),
-                      child: Text("Pick Location:",style: TextStyle(
-                          fontSize: 16,fontWeight: FontWeight.bold,
-                          color: Colors.amber.shade50),),
-                    ),
-                    SizedBox(height: 10,),
+                Padding(
+                  padding:  EdgeInsets.only(left: 10),
+                  child: Text("Pick Location:",style: TextStyle(
+                      fontSize: 16,fontWeight: FontWeight.bold,
+                      color: Colors.amber.shade50),),
+                ),
+                SizedBox(height: 10,),
 
-                    Padding(
+                Consumer<MainProvider>(
+                  builder: (context,value,child) {
+                    return Padding(
                       padding:  EdgeInsets.only(left: 10),
-                      child: Container(
-                        height: 40,
-                        width: 150,
-                        decoration: BoxDecoration(color: Color(0xff474E5B),
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [BoxShadow(
-                              color: Colors.black38,
-                              blurRadius: 10,
-                            ),]
-                        ),
-                        child: TextField(maxLines: 20,
-                          cursorColor:Colors.amber.shade50 ,style: TextStyle(color: Colors.amber.shade50,),
-                          decoration: InputDecoration(
-                            fillColor: Color(0xff474E5B),
-                            filled: true,
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide.none),
+                      child:Autocomplete<BookingPlaces>(
+                          optionsBuilder:
+                              (TextEditingValue textEditingValue) {
+                            return value.BookingPlacelist
+                                .where((BookingPlaces item) => item.Place
+                                .toLowerCase()
 
-                          ),
-                        ),
+                                .contains(textEditingValue.text
+                                .toLowerCase()))
+                                .toList();
+                          },
+                          displayStringForOption: (BookingPlaces option) =>
+                          option.Place,
+                          fieldViewBuilder: (BuildContext context,
+                              TextEditingController
+                              fieldTextEditingController,
+                              FocusNode fieldFocusNode,
+                              VoidCallback onFieldSubmitted) {
+                            WidgetsBinding.instance
+                                .addPostFrameCallback((_) {
+                              fieldTextEditingController.text =
+                                  value.PlaceController.text;
+                            });
+
+                            return Container(
+                              height: 40,width: 150,
+                                decoration: BoxDecoration(color: Color(0xff474E5B),
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [BoxShadow(
+                                    color: Colors.black38,
+                                    blurRadius: 10,
+                                  ),]
+                              ),
+                              child: TextFormField(
+                                // keyboardType: TextInputType.none,
+                                maxLines: 1,
+                                cursorColor:Colors.amber.shade50 ,style: TextStyle(color: Colors.amber.shade50,),
+                                    decoration: InputDecoration(
+                                      fillColor: Color(0xff474E5B),
+                                      isCollapsed: true,
+                                      contentPadding: EdgeInsets.only(top: 7,left: 24),
+                                      filled: true,
+                                      border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                          borderSide: BorderSide.none),
+
+                                    ),
+
+
+                                onChanged: (txt) {},
+                                controller: fieldTextEditingController,
+                                focusNode: fieldFocusNode,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "This field is Required";
+                                  } else {}
+                                },
+                              ),
+                            );
+                          },
+                          onSelected: (BookingPlaces selection) {
+                            value.PlaceController.text =
+                                selection.Place;
+                            print(selection.id + "asdfg");
+                          },
+                          optionsViewBuilder: (BuildContext context,
+                              AutocompleteOnSelected<BookingPlaces> onSelected,
+                              Iterable<BookingPlaces> options) {
+                            return Align(
+                              alignment: Alignment.topLeft,
+                              child: Material(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.black45
+                                  ),
+                                  width: 200,
+                                  // height:
+                                  child: ListView.builder(
+                                    padding: const EdgeInsets.all(10.0),
+                                    itemCount: options.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      final BookingPlaces option =
+                                      options.elementAt(index);
+
+                                      return GestureDetector(
+                                        onTap: () {
+                                          onSelected(option);
+                                        },
+                                        child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Text(option.Place,
+                                                  style: const TextStyle(
+                                                    // fontFamily:
+                                                    // 'PoetsenOne',
+                                                    color: Colors.white,
+                                                  )),
+                                              const SizedBox(height: 10),
+                                            ]),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
                       ),
-                    )
-                  ],
+                      // Container(
+                      //   height: 40,
+                      //   width: 150,
+                      //   decoration: BoxDecoration(color: Color(0xff474E5B),
+                      //       borderRadius: BorderRadius.circular(10),
+                      //       boxShadow: [BoxShadow(
+                      //         color: Colors.black38,
+                      //         blurRadius: 10,
+                      //       ),]
+                      //   ),
+                      //   child: TextField(maxLines: 20,
+                      //     cursorColor:Colors.amber.shade50 ,style: TextStyle(color: Colors.amber.shade50,),
+                      //     decoration: InputDecoration(
+                      //       fillColor: Color(0xff474E5B),
+                      //       filled: true,
+                      //       border: OutlineInputBorder(
+                      //           borderRadius: BorderRadius.circular(10),
+                      //           borderSide: BorderSide.none),
+                      //
+                      //     ),
+                      //   ),
+                      // ),
+                    );
+                  }
                 )
-              ]
-          ),
-          SizedBox(width: 30,),
-          Row(
-              children: [
-                Column(crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:  EdgeInsets.only(left: 10),
-                      child: Text("Drop Location:",style: TextStyle(
-                          fontSize: 16,fontWeight: FontWeight.bold,
-                          color: Colors.amber.shade50),),
-                    ),
-                    SizedBox(height: 10,),
+              ],
+            ),
+            SizedBox(width: 30,),
+            Column(crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:  EdgeInsets.only(left: 10),
+                    child: Text("Drop Location:",style: TextStyle(
+                        fontSize: 16,fontWeight: FontWeight.bold,
+                        color: Colors.amber.shade50),),
+                  ),
+                  SizedBox(height: 10,),
 
-                    Padding(
-                      padding:  EdgeInsets.only(left: 10),
-                      child: Container(
-                        height: 40,
-                        width: 150,
-                        decoration: BoxDecoration(color: Color(0xff474E5B),
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [BoxShadow(
-                              color: Colors.black38,
-                              blurRadius: 10,
-                            ),]
-                        ),
-                        child: TextField(maxLines: 20,
-                          cursorColor:Colors.amber.shade50 ,style: TextStyle(color: Colors.amber.shade50,),
-                          decoration: InputDecoration(
-                            fillColor: Color(0xff474E5B),
-                            filled: true,
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide.none),
 
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                )
-              ]
-          )
-        ],
+                  Consumer<MainProvider>(
+                      builder: (context,value,child) {
+                        return Padding(
+                            padding:  EdgeInsets.only(left: 10),
+                            child:Autocomplete<BookingPlaces>(
+                              optionsBuilder:
+                                  (TextEditingValue textEditingValue) {
+                                return value.BookingPlacelist
+                                    .where((BookingPlaces item) => item.Place
+                                    .toLowerCase()
+
+                                    .contains(textEditingValue.text
+                                    .toLowerCase()))
+                                    .toList();
+                              },
+                              displayStringForOption: (BookingPlaces option) =>
+                              option.Place,
+                              fieldViewBuilder: (BuildContext context,
+                                  TextEditingController
+                                  fieldTextEditingController,
+                                  FocusNode fieldFocusNode,
+                                  VoidCallback onFieldSubmitted) {
+                                WidgetsBinding.instance
+                                    .addPostFrameCallback((_) {
+                                  fieldTextEditingController.text =
+                                      value.PlaceController.text;
+                                });
+
+                                return Container(
+                                  height: 40,width: 150,
+                                  decoration: BoxDecoration(color: Color(0xff474E5B),
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: [BoxShadow(
+                                        color: Colors.black38,
+                                        blurRadius: 10,
+                                      ),]
+                                  ),
+                                  child: TextFormField(
+                                    // keyboardType: TextInputType.none,
+                                    maxLines: 1,
+                                    cursorColor:Colors.amber.shade50 ,style: TextStyle(color: Colors.amber.shade50,),
+                                    decoration: InputDecoration(
+                                      fillColor: Color(0xff474E5B),
+                                      isCollapsed: true,
+                                      contentPadding: EdgeInsets.only(top: 7,left: 24),
+                                      filled: true,
+                                      border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                          borderSide: BorderSide.none),
+
+                                    ),
+
+
+                                    onChanged: (txt) {},
+                                    controller: fieldTextEditingController,
+                                    focusNode: fieldFocusNode,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "This field is Required";
+                                      } else {}
+                                    },
+                                  ),
+                                );
+                              },
+                              onSelected: (BookingPlaces selection) {
+                                value.PlaceController.text =
+                                    selection.Place;
+                                print(selection.id + "asdfg");
+                              },
+                              optionsViewBuilder: (BuildContext context,
+                                  AutocompleteOnSelected<BookingPlaces> onSelected,
+                                  Iterable<BookingPlaces> options) {
+                                return Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Material(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.black45
+                                      ),
+                                      width: 200,
+                                      // height:
+                                      child: ListView.builder(
+                                        padding: const EdgeInsets.all(10.0),
+                                        itemCount: options.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          final BookingPlaces option =
+                                          options.elementAt(index);
+
+                                          return GestureDetector(
+                                            onTap: () {
+                                              onSelected(option);
+                                            },
+                                            child: Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(option.Place,
+                                                      style: const TextStyle(
+                                                        // fontFamily:
+                                                        // 'PoetsenOne',
+                                                        color: Colors.white,
+                                                      )),
+                                                  const SizedBox(height: 10),
+                                                ]),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ));
+
+
+
+
+
+
+                      })
+                ]
+            ),
+          ]
       ),
       SizedBox(height: 20,),
       Row(
-        children: [
-          Row(
+          children: [
+            Column(crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:  EdgeInsets.only(left: 10),
-                      child: Text("Pick Date:",style: TextStyle(
-                          fontSize: 16,fontWeight: FontWeight.bold,
-                          color: Colors.amber.shade50),),
+                Padding(
+                  padding:  EdgeInsets.only(left: 10),
+                  child: Text("Pick Date:",style: TextStyle(
+                      fontSize: 16,fontWeight: FontWeight.bold,
+                      color: Colors.amber.shade50),),
+                ),
+                SizedBox(height: 10,),
+
+                Padding(
+                  padding:  EdgeInsets.only(left: 10),
+                  child: Container(
+                    height: 40,
+                    width: 150,
+                    decoration: BoxDecoration(color: Color(0xff474E5B),
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [BoxShadow(
+                          color: Colors.black38,
+                          blurRadius: 10,
+                        ),]
                     ),
-                    SizedBox(height: 10,),
-
-                    Padding(
-                      padding:  EdgeInsets.only(left: 10),
-                      child: Container(
-                        height: 40,
-                        width: 150,
-                        decoration: BoxDecoration(color: Color(0xff474E5B),
+                    child: TextFormField(
+                      // enabled: true,
+                        keyboardType: TextInputType.none,
+                        textAlign: TextAlign.center,
+                      onTap: (){
+                        print("jhcbjd5665vhdbv"+provider.dateController.toString());
+                      provider.selectDate(context);
+                    },
+                      controller: provider.dateController,
+                      cursorColor:Colors.amber.shade50 ,style: TextStyle(color: Colors.amber.shade50,),
+                      decoration: InputDecoration(
+                        isCollapsed: true,
+                        contentPadding: EdgeInsets.all(8),
+                        fillColor: Color(0xff474E5B),
+                        filled: true,
+                        border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            boxShadow: [BoxShadow(
-                              color: Colors.black38,
-                              blurRadius: 10,
-                            ),]
-                        ),
-                        child: TextFormField(
-                          // enabled: true,
-                            keyboardType: TextInputType.none,
-                            textAlign: TextAlign.center,
-                          onTap: (){
-                            print("jhcbjd5665vhdbv"+provider.dateController.toString());
-                          provider.selectDate(context);
-                        },
-                          controller: provider.dateController,
-                          cursorColor:Colors.amber.shade50 ,style: TextStyle(color: Colors.amber.shade50,),
-                          decoration: InputDecoration(
-                            isCollapsed: true,
-                            contentPadding: EdgeInsets.all(8),
-                            fillColor: Color(0xff474E5B),
-                            filled: true,
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide.none),
+                            borderSide: BorderSide.none),
 
-                          ),
-                        ),
                       ),
-                    )
-                  ],
+                    ),
+                  ),
                 )
-              ]
-          ),
-          SizedBox(width: 30,),
-          Row(
+              ],
+            ),
+            SizedBox(width: 30,),
+            Column(crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:  EdgeInsets.only(left: 10),
-                      child: Text("Drop Date:" ,style: TextStyle(
-                          fontSize: 16,fontWeight: FontWeight.bold,
-                          color: Colors.amber.shade50),),
+                Padding(
+                  padding:  EdgeInsets.only(left: 10),
+                  child: Text("Drop Date:",style: TextStyle(
+                      fontSize: 16,fontWeight: FontWeight.bold,
+                      color: Colors.amber.shade50),),
+                ),
+                SizedBox(height: 10,),
+
+                Padding(
+                  padding:  EdgeInsets.only(left: 10),
+                  child: Container(
+                    height: 40,
+                    width: 150,
+                    decoration: BoxDecoration(color: Color(0xff474E5B),
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [BoxShadow(
+                          color: Colors.black38,
+                          blurRadius: 10,
+                        ),]
                     ),
-                    SizedBox(height: 10,),
-
-                    Padding(
-                      padding:  EdgeInsets.only(left: 10),
-                      child: Container(
-                        height: 40,
-                        width: 150,
-                        decoration: BoxDecoration(color: Color(0xff474E5B),
+                    child: TextFormField(
+                      // enabled: true,
+                      keyboardType: TextInputType.none,
+                      textAlign: TextAlign.center,
+                      onTap: (){
+                        print("jhcbjd5665vhdbv"+provider.dropdateController.toString());
+                        provider.selectDropDate(context);
+                      },
+                      controller: provider.dropdateController,
+                      cursorColor:Colors.amber.shade50 ,style: TextStyle(color: Colors.amber.shade50,),
+                      decoration: InputDecoration(
+                        isCollapsed: true,
+                        contentPadding: EdgeInsets.all(8),
+                        fillColor: Color(0xff474E5B),
+                        filled: true,
+                        border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            boxShadow: [BoxShadow(
-                              color: Colors.black38,
-                              blurRadius: 10,
-                            ),]
-                        ),
-                        child: TextField(
-                          keyboardType: TextInputType.none,
-                          // enabled:true,
-                          textAlign: TextAlign.center,
-                          onTap: (){
-                            print("jhcbjdvhdbv"+provider.dropdateController.toString());
-                          provider.selectDropDate(context);
-                        },
-                          controller: provider.dropdateController,
+                            borderSide: BorderSide.none),
 
-                          cursorColor:Colors.amber.shade50 ,style: TextStyle(color: Colors.amber.shade50,),
-                          decoration: InputDecoration(
-                            fillColor: Color(0xff474E5B),
-                            filled: true,
-                            isCollapsed: true,
-                            contentPadding: EdgeInsets.all(8),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide.none),
-
-                          ),
-                        ),
                       ),
-                    )
-                  ],
+                    ),
+                  ),
                 )
-              ]
-          ),
-        ],
+              ],
+            ),
+          ]
       ),
             SizedBox(height: 30,),
-            GestureDetector(onTap: (){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) =>
-                      paymentpage()));
-            },
-              child: Container(
-                child: Center(
-                  child: Text("NEXT",style: TextStyle(fontWeight: FontWeight.bold,
-                      fontSize: 16,color: Colors.amber.shade50),),
-                ),
-                  height: 40,
-                  width: 110,
-                  decoration: BoxDecoration(color: Color(0xff474E5B).withOpacity(1),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [BoxShadow(
-                        color: Colors.black38,
-                        blurRadius: 10,
-                      ),]
-                  ),
-              ),
-            ),
+            GestureDetector(onTap: () {
+              callNext(context, paymentpage());
+              if (_formKey.currentState!.validate()) {
+                showDialog(
+                    context: context,
+                    builder: (ctx) =>
+                        AlertDialog(
+                          backgroundColor: Colors.white,
+                          title: Text(
+                              "Are you sure to book this car?",
+                              style: TextStyle(fontFamily: "Thamjitha",
+                                  fontSize: 15)),
+                          // content: Text("Are you sure?",style: GoogleFonts.marcellus()),
+                          shape: Border.all(
+                              style: BorderStyle.none),
+                          actions: <Widget>[
+                            TextButton(
+                                onPressed: () {
+                                  back(context);
+                                },
+                                child: Container(
+                                  height: 25,
+                                  width: 65,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey
+                                        .withOpacity(0.2),
+                                  ),
+                                  child: Center(
+                                      child: Text("RECHECK",
+                                          style: TextStyle(
+                                              fontFamily: "Thamjitha",
+                                              color: Colors
+                                                  .redAccent, fontSize: 12))),
+                                )),
+                            TextButton(
+                                onPressed: () {
+                                  //
+                                  // value.Addbooking(userId);
+                                  // value.clearappointment();
+                                  // back(context);
+                                },
 
-
-
-      ]
+                                child: Container(
+                                  height: 40,
+                                  width: 110,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xff474E5B).withOpacity(1),),
+                                  child: Center(
+                                      child: Text("CONFIRM",
+                                          style: TextStyle(
+                                              fontFamily: "Thamjitha",
+                                              color: Colors
+                                                  .black, fontSize: 12))),
+                                )),
+                          ],
+                        ));
+              }
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) =>
+              //
+              //  paymentpage()));
+              //   showDialog(
+              //       context: context,
+              //       builder: (ctx) => AlertDialog(
+              //       backgroundColor: Colors.white,
+              //       title: Text(
+              //           "Are you sure to book this appointment?",
+              //           style: TextStyle(fontFamily: "Thamjitha"))),
+              //       // content: Text("Are you sure?",style: GoogleFonts.marcellus()),
+              //       shape: Border.all(
+              //           style: BorderStyle.none),
+              //       actions: <Widget>[
+              //       TextButton(
+              //       onPressed: () {
+              //
+              //     back(context);
+              //
+              //
+              // },
+              // child: Container(
+              //   child: Center(
+              //     child: Text("NEXT",style: TextStyle(fontWeight: FontWeight.bold,
+              //         fontSize: 16,color: Colors.amber.shade50),),
+              //   ),
+              //     height: 40,
+              //     width: 110,
+              //     decoration: BoxDecoration(color: Color(0xff474E5B).withOpacity(1),
+              //         borderRadius: BorderRadius.circular(20),
+              //         boxShadow: [BoxShadow(
+              //           color: Colors.black38,
+              //           blurRadius: 10,
+              //         ),]
+              //     ),
+              },   )
+    ]
     )
     )
     )
