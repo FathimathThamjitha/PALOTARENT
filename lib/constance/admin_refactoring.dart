@@ -1,8 +1,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/constance/provider/main_provider.dart';
 import 'package:provider/provider.dart';
+
+import '../Provider/main_provider.dart';
 
 
 Widget containerList(String names,dynamic height,dynamic width){
@@ -46,70 +47,6 @@ Widget containerList(String names,dynamic height,dynamic width){
     ],
   );
 }
-// Widget Requests(){
-//   return  Container(
-//     height: height/5,
-//     width: width/1.04,
-//     decoration: BoxDecoration(color: Color(0xff474E5B).withOpacity(0.20),
-//       borderRadius: BorderRadius.circular(8),
-//     ),
-//     child: Column(
-//       children: [
-//         Row(
-//           children: [
-//
-//
-//             Padding(
-//               padding:  EdgeInsets.only(left: 10,top: 7),
-//               child: Text("Name:",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.amber.shade50),),
-//             ),
-//             SizedBox(width: 10,),
-//             Padding(
-//               padding:  EdgeInsets.only(top: 8),
-//               child: Text("Thamjitha",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.amber.shade50),),
-//             ),
-//           ],
-//         ),
-//         Row(
-//           children: [
-//             Padding(
-//               padding:  EdgeInsets.only(left: 10,top: 7),
-//               child: Text("Phone No:",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.amber.shade50),),
-//             ),
-//             SizedBox(width: 10,),
-//             Padding(
-//               padding:  EdgeInsets.only(top: 8),
-//               child: Text("9074552753",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.amber.shade50),),
-//             ),
-//           ],
-//         ),
-//         SizedBox(height: 20,),
-//         Padding(
-//           padding:  EdgeInsets.only(left: 100),
-//           child: Row(
-//             children: [
-//               Container(
-//                 height: height/17,
-//                 width: width/3.40,
-//                 decoration: BoxDecoration(color: Color(0xffD9D9D9).withOpacity(0.40),
-//                     borderRadius: BorderRadius.circular(4)),
-//                 child: Center(child: Text("Accept",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.amber.shade50),)),
-//               ),
-//               SizedBox(width: 10,),
-//               Container(
-//                 height: height/17,
-//                 width: width/3.40,
-//                 decoration: BoxDecoration(color: Color(0xffD9D9D9).withOpacity(0.40),
-//                     borderRadius: BorderRadius.circular(4)),
-//                 child: Center(child: Text("Decline",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.amber.shade50),)),
-//               ),
-//             ],
-//           ),
-//         )
-//       ],
-//     ),
-//   );
-// }
 Widget canceldelete(String text,){
   return  Container(
     height: 40,

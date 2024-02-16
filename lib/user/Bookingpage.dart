@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:palota_rent_app/constance/provider/main_provider.dart';
-import 'package:palota_rent_app/constance/provider/my_models.dart';
 import 'package:palota_rent_app/user/payment_page.dart';
-import 'package:palota_rent_app/user/refactoring.dart';
+import 'package:palota_rent_app/constance/refactoring.dart';
 import 'package:provider/provider.dart';
 
+import '../Provider/main_provider.dart';
+import '../Provider/my_models.dart';
 import '../constance/call_functions.dart';
-import 'carview.dart';
+import 'Carview.dart';
 
 class Bookingpage extends StatelessWidget {
   Bookingpage({super.key});

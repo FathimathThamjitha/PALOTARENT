@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:palota_rent_app/constance/call_functions.dart';
-import 'package:palota_rent_app/user/refactoring.dart';
+import 'package:palota_rent_app/constance/refactoring.dart';
 
-import 'carview.dart';
+import 'Carview.dart';
 
 class PaymentSuccess extends StatelessWidget {
   const PaymentSuccess({super.key});

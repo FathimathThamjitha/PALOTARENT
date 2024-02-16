@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/constance/provider/main_provider.dart';
-import 'package:palota_rent_app/user/bottom.dart';
-import 'package:palota_rent_app/user/home.dart';
-import 'package:palota_rent_app/user/refactoring.dart';
+import 'package:palota_rent_app/constance/refactoring.dart';
 import 'package:provider/provider.dart';
+
+import '../Provider/main_provider.dart';
 
 
 

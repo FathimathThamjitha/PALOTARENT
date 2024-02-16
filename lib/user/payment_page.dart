@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:palota_rent_app/user/payment_success.dart';
-import 'package:palota_rent_app/user/refactoring.dart';
+import 'package:palota_rent_app/constance/refactoring.dart';
 
-import 'bookingpage.dart';
+import 'Bookingpage.dart';
 
 class paymentpage extends StatefulWidget {
   const paymentpage({super.key});

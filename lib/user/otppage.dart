@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:otp_timer_button/otp_timer_button.dart';
-import 'package:palota_rent_app/constance/call_functions.dart';
-import 'package:palota_rent_app/constance/provider/login_provider.dart';
-import 'package:palota_rent_app/user/refactoring.dart';
+import 'package:palota_rent_app/constance/refactoring.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 
-import 'bottom.dart';
+import '../Provider/login_provider.dart';
 
 
 

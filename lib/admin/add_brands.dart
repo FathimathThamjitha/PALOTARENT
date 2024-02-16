@@ -4,8 +4,9 @@ import 'package:palota_rent_app/constance/call_functions.dart';
 // import 'package:palota_rent_app/provider/main_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../constance/provider/main_provider.dart';
-import '../user/refactoring.dart';
+import '../Provider/main_provider.dart';
+
+import '../constance/refactoring.dart';
 import 'front_page.dart';
 
 class AddBrands extends StatelessWidget {

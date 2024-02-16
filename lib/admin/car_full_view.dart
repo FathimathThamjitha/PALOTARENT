@@ -5,8 +5,8 @@ import 'package:palota_rent_app/constance/call_functions.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../constance/provider/main_provider.dart';
-import '../user/refactoring.dart';
+import '../Provider/main_provider.dart';
+import '../constance/refactoring.dart';
 
 class Carfulview extends StatelessWidget {
   const Carfulview({super.key});

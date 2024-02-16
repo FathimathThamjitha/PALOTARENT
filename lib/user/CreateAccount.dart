@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/constance/call_functions.dart';
-import 'package:palota_rent_app/user/refactoring.dart';
-import 'package:palota_rent_app/user/urdetails.dart';
+import 'package:palota_rent_app/constance/refactoring.dart';
 import 'package:palota_rent_app/user/welcome.dart';
 import 'package:provider/provider.dart';
 
-import '../constance/provider/main_provider.dart';
+import '../Provider/main_provider.dart';
 
 class Crteac extends StatelessWidget {
   String userId,from;

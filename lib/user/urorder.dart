@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/user/home.dart';
-import 'package:palota_rent_app/user/refactoring.dart';
+import 'package:palota_rent_app/user/Home.dart';
+import 'package:palota_rent_app/constance/refactoring.dart';
 
 class urorder extends StatelessWidget {
   const urorder ({super.key});

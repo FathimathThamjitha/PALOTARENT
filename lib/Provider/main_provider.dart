@@ -11,8 +11,8 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:palota_rent_app/constance/call_functions.dart';
-import '../../user/urdetails.dart';
-import '../../user/welcome.dart';
+import '../user/urdetails.dart';
+import '../user/welcome.dart';
 import 'my_models.dart';
 
 
@@ -202,6 +202,7 @@ class MainProvider extends ChangeNotifier {
     }
     );
   }
+
   void addBrandDetails(String Brandname,String Brandid) async {
     DateTime dat = DateTime.now();
     String cid = dat.millisecondsSinceEpoch.toString();

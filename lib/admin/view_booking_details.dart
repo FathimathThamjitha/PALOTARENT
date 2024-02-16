@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:palota_rent_app/admin/view_booings.dart';
 
-import '../user/refactoring.dart';
-import 'admin_refactoring.dart';
+import '../constance/refactoring.dart';
+import '../constance/admin_refactoring.dart';
 
 class View_Booking_Details extends StatelessWidget {
   const View_Booking_Details({super.key});

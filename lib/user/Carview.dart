@@ -2,13 +2,12 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:palota_rent_app/constance/call_functions.dart';
-import 'package:palota_rent_app/user/refactoring.dart';
-import 'package:palota_rent_app/user/viewall.dart';
+import 'package:palota_rent_app/constance/refactoring.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../constance/provider/main_provider.dart';
-import 'bookingpage.dart';
+import '../Provider/main_provider.dart';
+import 'Bookingpage.dart';
 
 
 class carview extends StatefulWidget {

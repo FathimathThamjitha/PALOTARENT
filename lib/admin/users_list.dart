@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/constance/provider/main_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../user/refactoring.dart';
+import '../Provider/main_provider.dart';
+import '../constance/refactoring.dart';
 import 'front_page.dart';
 
 class UsersList extends StatelessWidget {

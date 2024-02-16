@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:palota_rent_app/user/urdetails.dart';
 import 'package:provider/provider.dart';
 
-import '../constance/provider/main_provider.dart';
-import 'home.dart';
+import '../Provider/main_provider.dart';
+import 'Home.dart';
 class Bottombar extends StatefulWidget {
   String userId;
   String phone;
@@ -25,7 +25,7 @@ class _BottombarState extends State<Bottombar> {
 
     setState(() {
       selectedIndex = index;
-      print(selectedIndex.toString()+"ppkk");
+      print(selectedIndex.toString()+"ppkk"); 
 
       if(selectedIndex==1){
         mainProvider.getProfiledetails(widget.userId);

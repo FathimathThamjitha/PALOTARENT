@@ -7,11 +7,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:palota_rent_app/admin/front_page.dart';
 import 'package:palota_rent_app/constance/call_functions.dart';
-import 'package:palota_rent_app/user/home.dart';
+import 'package:palota_rent_app/user/Home.dart';
 import 'package:provider/provider.dart';
 
-import '../../user/bottom.dart';
-import '../../user/otppage.dart';
+import '../user/Bottom.dart';
+import '../user/otppage.dart';
 import 'main_provider.dart';
 
 class LoginProvider extends ChangeNotifier{

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:palota_rent_app/constance/call_functions.dart';
-import 'package:palota_rent_app/constance/provider/main_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../user/refactoring.dart';
+import '../Provider/main_provider.dart';
+import '../constance/refactoring.dart';
 import 'add_booking_places.dart';
 
 class View_Booking_Places extends StatelessWidget {

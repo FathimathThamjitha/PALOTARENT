@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:palota_rent_app/constance/call_functions.dart';
-import 'package:palota_rent_app/constance/provider/main_provider.dart';
 import 'package:palota_rent_app/user/payment_fail.dart';
-import 'package:palota_rent_app/user/refactoring.dart';
+import 'package:palota_rent_app/constance/refactoring.dart';
 import 'package:palota_rent_app/user/topbrands.dart';
 import 'package:palota_rent_app/user/viewall.dart';
 import 'package:provider/provider.dart';
 
-import 'BMW_cars.dart';
-import 'availablecars.dart';
-import 'carview.dart';
+import '../Provider/main_provider.dart';
+import 'All_Cars.dart';
+import 'Availablecars.dart';
+import 'Carview.dart';
 import 'urorder.dart';
 
 
@@ -150,19 +150,6 @@ List <String> carImages=[
                      }
                    ),
 
-
-
-
-
-
-                 // Row(
-                 //   children: [
-                 //     carimages("assets/car.png", "Ford Mustang", "25000/perday", context,),
-                 //
-                 //     // SizedBox(width:1),
-                 // carimages("assets/bmwx7.png", "BMW 2Series", "28000/perday",context),
-                 //   ],
-                 // ),
                  SizedBox(height: 5,),
                  Padding(
                    padding:  EdgeInsets.only(left: 5,right: 5),

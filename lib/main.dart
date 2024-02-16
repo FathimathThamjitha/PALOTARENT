@@ -1,13 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/constance/provider/login_provider.dart';
-import 'package:palota_rent_app/user/palota_start.dart';
 import 'package:palota_rent_app/user/splashscreen.dart';
-// import 'package:palota_rent_app/provider/main_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'admin/front_page.dart';
-import 'constance/provider/main_provider.dart';
+import 'Provider/login_provider.dart';
+import 'Provider/main_provider.dart';
 
 
 

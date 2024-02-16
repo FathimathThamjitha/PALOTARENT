@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:palota_rent_app/constance/call_functions.dart';
-import 'package:palota_rent_app/constance/provider/login_provider.dart';
-import 'package:palota_rent_app/constance/provider/main_provider.dart';
-import 'package:palota_rent_app/user/refactoring.dart';
+import 'package:palota_rent_app/constance/refactoring.dart';
 import 'package:provider/provider.dart';
 
-import 'createac.dart';
-import 'otppage.dart';
+import '../Provider/login_provider.dart';
+import '../Provider/main_provider.dart';
+import 'CreateAccount.dart';
 
 class Welcome extends StatelessWidget {
   String uderId;

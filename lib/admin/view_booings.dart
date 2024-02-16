@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:palota_rent_app/admin/view_booking_details.dart';
 
-import '../user/refactoring.dart';
+import '../constance/refactoring.dart';
 import 'front_page.dart';
 
 class view_Bookings extends StatelessWidget {

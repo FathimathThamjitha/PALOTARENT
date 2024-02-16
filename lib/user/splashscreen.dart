@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:palota_rent_app/user/welcome.dart';
 import 'package:provider/provider.dart';
 
+import '../Provider/login_provider.dart';
 import '../constance/call_functions.dart';
-import '../constance/provider/login_provider.dart';
 
 class Splash extends StatefulWidget {
   String userId;
