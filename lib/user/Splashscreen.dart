@@ -6,7 +6,7 @@ import 'package:palota_rent_app/user/welcome.dart';
 import 'package:provider/provider.dart';
 
 import '../Provider/login_provider.dart';
-import '../constance/call_functions.dart';
+import '../constance/Call_Functions.dart';
 
 class Splash extends StatefulWidget {
   String userId;

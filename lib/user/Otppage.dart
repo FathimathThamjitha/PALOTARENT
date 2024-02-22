@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:otp_timer_button/otp_timer_button.dart';
-import 'package:palota_rent_app/constance/refactoring.dart';
+import 'package:palota_rent_app/constance/Refactoring.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 

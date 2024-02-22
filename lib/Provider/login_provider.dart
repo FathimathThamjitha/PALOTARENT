@@ -5,13 +5,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/admin/front_page.dart';
-import 'package:palota_rent_app/constance/call_functions.dart';
+import 'package:palota_rent_app/admin/Front_Page.dart';
+import 'package:palota_rent_app/constance/Call_Functions.dart';
 import 'package:palota_rent_app/user/Home.dart';
 import 'package:provider/provider.dart';
 
 import '../user/Bottom.dart';
-import '../user/otppage.dart';
+import '../user/Otppage.dart';
 import 'main_provider.dart';
 
 class LoginProvider extends ChangeNotifier{

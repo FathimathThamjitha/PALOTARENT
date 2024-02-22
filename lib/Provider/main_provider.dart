@@ -10,8 +10,8 @@ import 'package:firebase_storage/firebase_storage.dart'as firebase_storage;
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:palota_rent_app/constance/call_functions.dart';
-import '../user/urdetails.dart';
+import 'package:palota_rent_app/constance/Call_Functions.dart';
+import '../user/Urdetails.dart';
 import '../user/welcome.dart';
 import 'my_models.dart';
 

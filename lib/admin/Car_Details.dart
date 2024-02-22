@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/constance/call_functions.dart';
+import 'package:palota_rent_app/constance/Call_Functions.dart';
 import 'package:provider/provider.dart';
 
 import '../Provider/main_provider.dart';
-import '../constance/refactoring.dart';
-import '../constance/admin_refactoring.dart';
+import '../constance/Refactoring.dart';
+import '../constance/Admin_Refactoring.dart';
 import 'View_Cars_Addig.dart';
 
 class CarDetails extends StatefulWidget {

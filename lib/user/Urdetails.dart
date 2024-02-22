@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/constance/call_functions.dart';
-import 'package:palota_rent_app/user/palota_start.dart';
-import 'package:palota_rent_app/constance/refactoring.dart';
+import 'package:palota_rent_app/constance/Call_Functions.dart';
+import 'package:palota_rent_app/user/Palota_start.dart';
+import 'package:palota_rent_app/constance/Refactoring.dart';
 import 'package:provider/provider.dart';
 
 import '../Provider/main_provider.dart';

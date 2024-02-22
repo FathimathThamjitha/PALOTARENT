@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/constance/call_functions.dart';
+import 'package:palota_rent_app/constance/Call_Functions.dart';
 import 'package:provider/provider.dart';
 
 import '../Provider/main_provider.dart';
-import '../constance/refactoring.dart';
-import 'add_brands.dart';
+import '../constance/Refactoring.dart';
+import 'Add_Brands.dart';
 import 'View_Cars_Addig.dart';
-import 'front_page.dart';
+import 'Front_Page.dart';
 
 class Topbrandscars extends StatelessWidget {
 

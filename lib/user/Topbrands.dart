@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:palota_rent_app/user/Home.dart';
-import 'package:palota_rent_app/constance/refactoring.dart';
+import 'package:palota_rent_app/constance/Refactoring.dart';
 
-import '../admin/add_brands.dart';
+import '../admin/Add_Brands.dart';
 import 'All_Cars.dart';
 
 class Topbrands extends StatelessWidget {

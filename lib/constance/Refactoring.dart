@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:palota_rent_app/user/Carview.dart';
-import 'package:palota_rent_app/user/viewall.dart';
+import 'package:palota_rent_app/user/Viewall.dart';
 
 
 Widget button(String name,dynamic height,dynamic width){

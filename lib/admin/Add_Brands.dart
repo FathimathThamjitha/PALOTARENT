@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/admin/top_brands.dart';
-import 'package:palota_rent_app/constance/call_functions.dart';
+import 'package:palota_rent_app/admin/Top_Brands.dart';
+import 'package:palota_rent_app/constance/Call_Functions.dart';
 // import 'package:palota_rent_app/provider/main_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../Provider/main_provider.dart';
 
-import '../constance/refactoring.dart';
-import 'front_page.dart';
+import '../constance/Refactoring.dart';
+import 'Front_Page.dart';
 
 class AddBrands extends StatelessWidget {
 

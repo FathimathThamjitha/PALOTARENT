@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/admin/view_booking_places.dart';
-import 'package:palota_rent_app/constance/call_functions.dart';
+import 'package:palota_rent_app/admin/View_Booking_Places.dart';
+import 'package:palota_rent_app/constance/Call_Functions.dart';
 import 'package:provider/provider.dart';
 
 import '../Provider/main_provider.dart';
-import '../constance/refactoring.dart';
+import '../constance/Refactoring.dart';
 
 class add_booking_places extends StatelessWidget {
   String from;

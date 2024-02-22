@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/admin/top_brands.dart';
-import 'package:palota_rent_app/constance/call_functions.dart';
+import 'package:palota_rent_app/admin/Top_Brands.dart';
+import 'package:palota_rent_app/constance/Call_Functions.dart';
 import 'package:provider/provider.dart';
 
 import '../Provider/main_provider.dart';
-import '../constance/refactoring.dart';
-import '../constance/admin_refactoring.dart';
-import 'car_details.dart';
-import 'car_full_view.dart';
+import '../constance/Refactoring.dart';
+import '../constance/Admin_Refactoring.dart';
+import 'Car_Details.dart';
+import 'Car_Full_View.dart';
 
 class View_Cars_Addig extends StatelessWidget {
   String from;

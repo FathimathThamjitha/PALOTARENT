@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:palota_rent_app/user/payment_page.dart';
-import 'package:palota_rent_app/constance/refactoring.dart';
+import 'package:palota_rent_app/user/Payment_page.dart';
+import 'package:palota_rent_app/constance/Refactoring.dart';
 import 'package:provider/provider.dart';
 
 import '../Provider/main_provider.dart';
 import '../Provider/my_models.dart';
-import '../constance/call_functions.dart';
+import '../constance/Call_Functions.dart';
 import 'Carview.dart';
 
 class Bookingpage extends StatelessWidget {

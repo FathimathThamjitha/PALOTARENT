@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../Provider/main_provider.dart';
-import '../constance/refactoring.dart';
-import 'front_page.dart';
+import '../constance/Refactoring.dart';
+import 'Front_Page.dart';
 
 class UsersList extends StatelessWidget {
   const UsersList({super.key});

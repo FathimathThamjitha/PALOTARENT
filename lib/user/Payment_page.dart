@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/user/payment_success.dart';
-import 'package:palota_rent_app/constance/refactoring.dart';
+import 'package:palota_rent_app/user/Payment_success.dart';
+import 'package:palota_rent_app/constance/Refactoring.dart';
 
 import 'Bookingpage.dart';
 

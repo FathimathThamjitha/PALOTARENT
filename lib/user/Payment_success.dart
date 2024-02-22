@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/constance/call_functions.dart';
-import 'package:palota_rent_app/constance/refactoring.dart';
+import 'package:palota_rent_app/constance/Call_Functions.dart';
+import 'package:palota_rent_app/constance/Refactoring.dart';
 
 import 'Carview.dart';
 

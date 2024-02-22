@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/user/splashscreen.dart';
+import 'package:palota_rent_app/user/Splashscreen.dart';
 import 'package:provider/provider.dart';
 
 import 'Provider/login_provider.dart';

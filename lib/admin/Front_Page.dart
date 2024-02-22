@@ -1,21 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:palota_rent_app/admin/view_booings.dart';
-import 'package:palota_rent_app/admin/requests.dart';
-import 'package:palota_rent_app/admin/top_brands.dart';
-import 'package:palota_rent_app/admin/users_list.dart';
-import 'package:palota_rent_app/constance/call_functions.dart';
-import 'package:palota_rent_app/user/palota_start.dart';
+import 'package:palota_rent_app/admin/View_Booings.dart';
+import 'package:palota_rent_app/admin/Requests.dart';
+import 'package:palota_rent_app/admin/Top_Brands.dart';
+import 'package:palota_rent_app/admin/Users_List.dart';
+import 'package:palota_rent_app/constance/Call_Functions.dart';
+import 'package:palota_rent_app/user/Palota_start.dart';
 import 'package:provider/provider.dart';
 
 import '../Provider/main_provider.dart';
-import '../constance/refactoring.dart';
-import '../user/topbrands.dart';
+import '../constance/Refactoring.dart';
+import '../user/Topbrands.dart';
 import '../user/welcome.dart';
-import 'view_booking_places.dart';
-import 'add_brands.dart';
-import '../constance/admin_refactoring.dart';
+import 'View_Booking_Places.dart';
+import 'Add_Brands.dart';
+import '../constance/Admin_Refactoring.dart';
 // import 'car_detail_fullview.dart';
 
 class FrontPage extends StatelessWidget {
