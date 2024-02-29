@@ -18,12 +18,13 @@ import 'my_models.dart';
 
 class MainProvider extends ChangeNotifier {
   String checkvalue = "";
-  File? CarImages;
-  File?BrandLogo;
+
+
   String imageUrl = "";
   File? ProfileImg;
   String Imagespr="";
   String LogoImg="";
+  bool proof_visible = false;
   final FirebaseFirestore db = FirebaseFirestore.instance;
   firebase_storage.Reference ref = FirebaseStorage.instance.ref("Images");
 
@@ -40,6 +41,14 @@ class MainProvider extends ChangeNotifier {
 
   List<BrandNames> NameList = [];
   List<CarDetails> DetailList = [];
+
+  void proof_visiblity()
+  {
+    proof_visible = true;
+    print("33333333333333333333333 $proof_visible");
+    notifyListeners();
+  }
+
   void addBrandname(String from, String bid) async {
     print("code heree111");
 
@@ -78,6 +87,7 @@ class MainProvider extends ChangeNotifier {
 
     } else {
       db.collection("BRANDS").doc(bid).update(map);
+
     }
     getBrandName();
     notifyListeners();
@@ -126,6 +136,9 @@ class MainProvider extends ChangeNotifier {
   void Clearfn() {
     nameController.clear();
     BrandLogo=null;
+    BrandLogos='';
+    notifyListeners();
+
   }
 
   void editBrandName(String editid) {
@@ -133,6 +146,7 @@ class MainProvider extends ChangeNotifier {
       if (value.exists) {
         Map<dynamic, dynamic> map = value.data() as Map;
         nameController.text = map["BRAND_NAME"].toString();
+        BrandLogos=map["BRAND_LOGO"].toString();
         notifyListeners();
       }
     });
@@ -168,6 +182,7 @@ class MainProvider extends ChangeNotifier {
       db.collection("BOOKING_PLACES").doc(Id).set(map);
     } else {
       db.collection("BOOKING_PLACES").doc(Plcid).update(map);
+
     }
 
     getBookingPlaces();
@@ -202,8 +217,8 @@ class MainProvider extends ChangeNotifier {
     }
     );
   }
-
-  void addBrandDetails(String Brandname,String Brandid) async {
+  File? CarImages;
+  void addCarDetails(String Brandname,String Brandid,String from,String editid) async {
     DateTime dat = DateTime.now();
     String cid = dat.millisecondsSinceEpoch.toString();
     HashMap<String, Object> map = HashMap();
@@ -215,9 +230,12 @@ class MainProvider extends ChangeNotifier {
     map["SEATS"] = SeatsController.text.toString();
     map["BAGS"] = BagsController.text.toString();
     map["TRANSMISSION"] = checkvalue;
-    map["CAR_ID"] =cid;
-    map["CAR_BRAND_ID"]=Brandid;
     map["KLM"] = KlmController.text.toString();
+    if(from=="NEW"){
+      map["CAR_ID"] =cid;
+      map["CAR_BRAND_ID"]=Brandid;
+    }
+
 
 
     if (CarImages != null) {
@@ -238,8 +256,20 @@ class MainProvider extends ChangeNotifier {
       map['PHOTO'] = imageUrl;
       // editMap['IMAGE_URL'] = imageUrl;
     }
-    db.collection("CAR_DETAILS").doc(cid).set(map);
-    getBrandDetails(Brandid);
+    if (from=="NEW"){
+      print("vhjgvjhbfjbvjhv");
+      db.collection("CAR_DETAILS").doc(cid).set(map);
+      getCarDetails(Brandid);
+
+    }
+    else{
+      db.collection("CAR_DETAILS").doc(editid).update(map);
+      getCarDetails(Brandid);
+      ClearDetails();
+
+    }
+
+
     notifyListeners();
   }
 
@@ -269,7 +299,8 @@ notifyListeners();
     SeatsController.clear();
     BagsController.clear();
     KlmController.clear();
-
+    imageUrl="";
+    CarImages=null;
   }
 
 ///car
@@ -342,14 +373,19 @@ notifyListeners();
     }
     notifyListeners();
   }
-  void editBrandDetails(){
+  void DeleteCarDetails(String id,String carid,context){
 
-
-
-
+db.collection("CAR_DETAILS").doc(id).delete();
+ScaffoldMessenger.of(context)
+    .showSnackBar(SnackBar(
+    content: Text("Deleted",style: TextStyle(fontWeight: FontWeight.normal),),
+    backgroundColor:  Colors.white.withOpacity(0.3),
+    ));
+getCarDetails(carid);
+notifyListeners();
   }
 bool Getcar =false;
-  void getBrandDetails(String carid) {
+  void getCarDetails(String carid) {
     Getcar=true;
     db.collection("CAR_DETAILS").where("CAR_BRAND_ID",isEqualTo: carid).get().then((value1) {
       if (value1.docs.isNotEmpty) {
@@ -604,13 +640,15 @@ void declineRequest(id){
 
 
   }
-
-  void setBrandLogo(File imagee) {
-    BrandLogo = imagee;
-
-
-    notifyListeners();
-  }
+  File?BrandLogo;
+  String BrandLogos="";
+  // void setBrandLogo(File imagee) {
+  //   BrandLogo = imagee;
+  //
+  //
+  //   notifyListeners();
+  // }
+  void clrLogo(){}
   // void ClearDetails() {
   //   CarNameController.clear();
   //   PriceController.clear();
@@ -926,6 +964,8 @@ void declineRequest(id){
     }
     notifyListeners();
   }
+
+
 
     }
 

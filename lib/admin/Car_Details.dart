@@ -10,7 +10,9 @@ import 'View_Cars_Addig.dart';
 class CarDetails extends StatefulWidget {
   String from;
   String Brandid;
-   CarDetails({super.key,required this.from,required this.Brandid});
+  String editid;
+  String pagefrom;
+   CarDetails({super.key,required this.from,required this.Brandid,required this.editid,required this.pagefrom});
 
   @override
   State<CarDetails> createState() => _CarDetailsState();
@@ -154,8 +156,14 @@ class _CarDetailsState extends State<CarDetails> {
           Consumer<MainProvider>(
             builder: (context,value,child) {
               return InkWell(onTap: (){
-                value.addBrandDetails(widget.from,widget.Brandid);
-                callNext(context, View_Cars_Addig(from: widget.from,Brandid: widget.Brandid));
+                if(widget.pagefrom == "NEW"){
+                  value.addCarDetails(widget.from,widget.Brandid,"NEW","");
+                  // value.getCarDetails();
+                }
+                else{
+                  value.addCarDetails(widget.from,widget.Brandid,"EDIT",widget.editid);
+                }
+                back(context);
                 // Navigator.push(context, MaterialPageRoute(builder: (context)=>AudiCarAddig()));
                 // callNext(context, AudiCarAddig());
               },

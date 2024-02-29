@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:palota_rent_app/constance/Call_Functions.dart';
 import 'package:palota_rent_app/user/Payment_success.dart';
 import 'package:palota_rent_app/constance/Refactoring.dart';
 
@@ -32,9 +33,10 @@ class _paymentpageState extends State<paymentpage> {
         child: Row(
           children: [
             GestureDetector(onTap: (){
-           Navigator.push(context,
-           MaterialPageRoute(builder: (context) =>
-           Bookingpage()));
+           // Navigator.push(context,
+           // MaterialPageRoute(builder: (context) =>
+           // Bookingpage()));
+              back(context);
 
   },
                 child: Icon(Icons.arrow_back_ios_rounded,color: Colors.amber.shade50,)),

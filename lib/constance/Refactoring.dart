@@ -39,7 +39,7 @@ Widget texting(String name,dynamic Iconsname,TextEditingController controller,bo
 
  return Padding(
    padding:  EdgeInsets.only(left: 10,right: 10),
-   child: TextField(controller: controller,
+   child: TextFormField(controller: controller,
      cursorColor: Colors.amber.shade50,style: TextStyle(color: Colors.amber.shade50),
   enabled: enable,
   decoration: InputDecoration(

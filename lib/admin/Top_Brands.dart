@@ -43,17 +43,16 @@ class Topbrandscars extends StatelessWidget {
           )
         ],
       ),
-            Consumer<MainProvider>(
+
+           Consumer<MainProvider>(
               builder: (context,value,child) {
                 return Container(width: 200,
                   child: ListView.builder(shrinkWrap: true,
                     itemCount: value.NameList.length,
                     itemBuilder: (context, index) {
-
-                    return GestureDetector(
+                     return GestureDetector(
                     onTap: (){
-                      value.getBrandDetails(value.NameList[index].id);
-
+                      value.getCarDetails(value.NameList[index].id);
                       callNext(context, View_Cars_Addig(from: value.NameList[index].Name,Brandid: value.NameList[index].id,));
 
     //     Navigator.push(context, MaterialPageRoute(builder: (context)=>AudiCarAddig()));
@@ -64,7 +63,7 @@ class Topbrandscars extends StatelessWidget {
                             builder: (ctx) => AlertDialog(
                               backgroundColor: Color(0xffD9D9D9),
 
-                              content:Text("Are you sure want to edit or delete?",
+                              content:const Text("Are you sure want to edit or delete?",
                                 style: TextStyle(
                                   fontSize: 15,
                                   // fontFamily: 'Futura',
@@ -82,9 +81,10 @@ class Topbrandscars extends StatelessWidget {
                                                 print(value.NameList[index].id+"kjjjj");
                                                 callNext(context, AddBrands(from: 'EDIT',
                                                   bid:value.NameList[index].id ,));
-
+                                                // value.Clearfn();
+                                              value.BrandLogo=null;
                                               },
-                                              child: Text("EDIT",
+                                              child: const Text("EDIT",
                                                 style: TextStyle(fontSize: 15,  fontFamily: 'Futura',color:Color(0xff35103B)
                                                 ),));
                                         }

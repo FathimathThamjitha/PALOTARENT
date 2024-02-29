@@ -92,6 +92,14 @@ class AddBrands extends StatelessWidget {
                              color: Color(0xffD9D9D9).withOpacity(0.30),
                            ),
                            child:Image.file(value.BrandLogo!,fit: BoxFit.fill,)
+                         ):value.BrandLogos!= ""?
+                         Container(
+                             height: 90,
+                             width: 150,
+                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
+                               color: Color(0xffD9D9D9).withOpacity(0.30),
+                             ),
+                             child:Image.network(value.BrandLogos!,fit: BoxFit.fill,)
                          ):
                          Container(
                            height: 90,
